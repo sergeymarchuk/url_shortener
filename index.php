@@ -16,11 +16,18 @@
 <?php
 
     error_reporting(E_ALL);
-    
-    const LENGTHPASSWORD = 10;
-    session_start();
 
-    require_once 'auth.php';
+    const LENGTHSHORTURL = 6;
+
+    require_once "library.php";
+
+    if (!empty($_POST['url'])) {
+        $long_url = $_POST['url'];
+        $short_url = getShortUrl();
+
+        echo "{$short_url}";
+    }
+
 
 ?>  
 </body>
