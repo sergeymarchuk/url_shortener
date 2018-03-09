@@ -23,9 +23,8 @@
 
     if (!empty($_POST['url'])) {
         $long_url = $_POST['url'];
-        $short_url = getShortUrl();
 
-        echo "{$short_url}";
+        writeToFile(getShortUrl(), $long_url);
     }
 
 
