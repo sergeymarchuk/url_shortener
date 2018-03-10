@@ -4,9 +4,9 @@
 
         do {
             $shortUrl = generateShortUrl();
-        } while !file_exists(pathToFile($shortUrl));
-        
-        return $shortUrl
+        } while (file_exists(pathToFile($shortUrl)));
+
+        return $shortUrl;
     }
 
     function generateShortUrl() {
@@ -21,14 +21,15 @@
     }
 
     function pathToFile($fileName) {
-        return __DIR__.DIRECTORY_SEPARATOR."urls".DIRECTORY_SEPARATOR.$fileName;
+        return __DIR__ . DIRECTORY_SEPARATOR . "urls" . DIRECTORY_SEPARATOR . $fileName . ".url";
     }
 
     function writeToFile($shortUrl, $longUrl) {
+        $path = pathToFile($shortUrl);
 
         if (!file_exists($path)) {
             $fp = fopen($path, "w");
-            fwrite($fp, $longUrl);
+            fwrite($fp, $longUrl . PHP_EOL);
             fclose($fp);
         }
     }
@@ -38,5 +39,5 @@
         $fullUrl = file_get_contents($fp);
         fclose($fp);
 
-        return $fullUrl
+        return $fullUrl;
     }
