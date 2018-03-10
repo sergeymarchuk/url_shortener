@@ -41,3 +41,22 @@
 
         return $fullUrl;
     }
+
+    function getFilesList() {
+        $array = [];
+        $path = __DIR__ . DIRECTORY_SEPARATOR . "urls/";
+
+        $list = scandir($path);
+        
+        foreach ($list as $value) {
+            if ($value != "." && $value != "..") {
+                $array[$value] = getFullUrl(pathToFile($value));
+            }
+        }
+        
+        return $array;
+    }
+
+    function countOfFiles() {
+        return count(getFilesList());
+    }

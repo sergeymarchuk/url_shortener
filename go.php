@@ -3,5 +3,6 @@
 
     $path = pathToFile($_GET['u']);
 
-    $long_url = file_get_contents($path);
+    $long_url = trim(file_get_contents($path));
+
     
