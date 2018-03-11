@@ -20,13 +20,14 @@
     const LENGTHSHORTURL = 6;
 
     require_once "library.php";
+    var_dump($_COOKIE['listUrl']);
 
     if (!empty($_POST['url'])) {
         $long_url = $_POST['url'];
         $short_url = getShortUrl();
 
         writeToFile($short_url, $long_url);
-        setcookie('shortUrl', $short_url, time() + 2678400);
+        setcookie("listUrl[]", $short_url, time() + 86400);
     }
 ?>  
 </body>
