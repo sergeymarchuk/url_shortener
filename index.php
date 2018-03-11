@@ -26,6 +26,7 @@
         $short_url = getShortUrl();
 
         writeToFile($short_url, $long_url);
+        setcookie('shortUrl', $short_url, time() + 2678400);
     }
 ?>  
 </body>
