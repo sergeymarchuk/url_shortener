@@ -14,6 +14,15 @@
     const TIME_OF_LIFE_COOKIE = 900; // time in seconds
 
     require_once "library.php";
+
+    if (!empty($_POST['url'])) {
+        $long_url = $_POST['url'];
+        $short_url = getShortUrl();
+
+        writeToFile($short_url, $long_url);
+        setcookie("listUrl[]", $short_url, time() + TIME_OF_LIFE_COOKIE);
+    }
+
     require_once "linksList.php";
 ?>
 
@@ -23,14 +32,5 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">add new adress</button>
         <p class="mt-5 mb-3 text-muted">&copy MARICH 2018</p>
     </form>
-<?php
-    if (!empty($_POST['url'])) {
-        $long_url = $_POST['url'];
-        $short_url = getShortUrl();
-
-        writeToFile($short_url, $long_url);
-        setcookie("listUrl[]", $short_url, time() + TIME_OF_LIFE_COOKIE);
-    }
-?>  
 </body>
 </html>
