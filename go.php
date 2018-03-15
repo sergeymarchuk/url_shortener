@@ -3,8 +3,12 @@
 
     $path = pathToFile($_GET['u']);
 
-    $long_url = trim(file_get_contents($path));
+    if (file_exists($path)) {
+        $long_url = trim(file_get_contents($path));
+        header('Location: http://' . $long_url . '/');
+    } else {
+        header("HTTP/1.0 404 Not Found");
+    }
 
-    // create redirect to long url
-
+    exit;
     
