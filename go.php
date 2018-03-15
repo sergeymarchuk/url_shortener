@@ -5,4 +5,6 @@
 
     $long_url = trim(file_get_contents($path));
 
+    // create redirect to long url
+
     
