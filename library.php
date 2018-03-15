@@ -21,7 +21,12 @@
     }
 
     function pathToFile($fileName) {
-        return __DIR__ . DIRECTORY_SEPARATOR . "urls" . DIRECTORY_SEPARATOR . $fileName . ".url";
+
+        if (!strpos($fileName, '.url')) {
+            return __DIR__ . DIRECTORY_SEPARATOR . "urls" . DIRECTORY_SEPARATOR . $fileName . ".url";
+        } else {
+            return __DIR__ . DIRECTORY_SEPARATOR . "urls" . DIRECTORY_SEPARATOR . $fileName;
+        }
     }
 
     function writeToFile($shortUrl, $longUrl) {
@@ -35,18 +40,17 @@
     }
 
     function getFullUrl($path) {
-        $fp = fopen($path, "r");
-        $fullUrl = file_get_contents($fp);
-        fclose($fp);
+        $fullUrl = file_get_contents($path);
 
         return $fullUrl;
     }
 
     function getFilesList() {
         $array = [];
-        $path = __DIR__ . DIRECTORY_SEPARATOR . "urls/";
+        $path = __DIR__ . DIRECTORY_SEPARATOR . "urls" . DIRECTORY_SEPARATOR;
 
         $list = scandir($path);
+        var_dump($list);
         
         foreach ($list as $value) {
             if ($value != "." && $value != "..") {
