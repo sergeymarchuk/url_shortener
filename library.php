@@ -13,7 +13,7 @@
         $chars = "qazxswedcvfrtgbnhyujmkiolpQAZXSWEDCVFRTGBNHYUJMKIOLP";
         $shortUrl = null;
 
-        for ($i = 0; $i < LENGTHSHORTURL; $i++) { 
+        for ($i = 0; $i < SHORT_URL_LENGTH; $i++) { 
             $shortUrl .= $chars[rand(0,strlen($chars) - 1)];
         }
 
