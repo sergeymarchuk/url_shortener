@@ -50,7 +50,6 @@
         $path = __DIR__ . DIRECTORY_SEPARATOR . "urls" . DIRECTORY_SEPARATOR;
 
         $list = scandir($path);
-        var_dump($list);
         
         foreach ($list as $value) {
             if ($value != "." && $value != "..") {
@@ -63,4 +62,8 @@
 
     function countOfFiles() {
         return count(getFilesList());
+    }
+
+    function getHost() {
+        return $_SERVER['SERVER_NAME'];
     }
