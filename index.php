@@ -7,6 +7,16 @@
 </head>
 <body class="text-center">
 
+<?php 
+    error_reporting(E_ALL);
+
+    const SHORT_URL_LENGTH = 6;
+    const TIME_OF_LIFE_COOKIE = 900; // time in seconds
+
+    require_once "library.php";
+    require_once "linksList.php";
+?>
+
     <form class='form-signin mt-5' action='index.php' method='post' style="width: 30%; min-width: 350px; margin: auto;">
         <h1 class="h3 mb-3 font-weight-normal">Pleae sign in</h1>
         <input class="mb-3 btn-block" type='text' placeholder='your long URL' name='url'>
@@ -14,22 +24,13 @@
         <p class="mt-5 mb-3 text-muted">&copy MARICH 2018</p>
     </form>
 <?php
-
-    error_reporting(E_ALL);
-
-    const LENGTHSHORTURL = 6;
-
-    require_once "library.php";
-    var_dump($_COOKIE['listUrl']);
-
     if (!empty($_POST['url'])) {
         $long_url = $_POST['url'];
         $short_url = getShortUrl();
 
         writeToFile($short_url, $long_url);
-        setcookie("listUrl[]", $short_url, time() + 86400);
+        setcookie("listUrl[]", $short_url, time() + TIME_OF_LIFE_COOKIE);
     }
 ?>  
 </body>
 </html>
-    
